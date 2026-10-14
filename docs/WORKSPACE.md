@@ -5,8 +5,8 @@
 本机项目根为 `/home/lvziw/项目`（其他设备用 `WT_ROOT_DIR` 指定）。本仓库的 Git 锚点目录是：
 
 ```text
-/home/lvziw/项目/项目网站/TaskDock/                 # .git + 仓库锚点，不用于开发
-/home/lvziw/项目/.wt/TaskDock/<task-slug>/          # 任务 worktree，唯一开发位置
+/home/lvziw/项目/项目网站/TaskDock-site/                 # .git + 仓库锚点，不用于开发
+/home/lvziw/项目/.wt/TaskDock-site/<task-slug>/          # 任务 worktree，唯一开发位置
 ```
 
 远端 `main` 是唯一开发基线；不在主目录检出源码、改文件或建提交。
@@ -14,18 +14,18 @@
 ## 创建任务 worktree
 
 ```bash
-REPO=/home/lvziw/项目/项目网站/TaskDock
+REPO=/home/lvziw/项目/项目网站/TaskDock-site
 git -C "$REPO" fetch origin --prune
 BASE=$(git -C "$REPO" symbolic-ref --quiet --short refs/remotes/origin/HEAD | sed 's|^origin/||')
 test "$BASE" = main
-PATH="$HOME/.local/bin:$PATH" wt new TaskDock site-homepage
+PATH="$HOME/.local/bin:$PATH" wt new TaskDock-site site-homepage
 ```
 
 `wt new` 会从 `origin/main` 创建 `agent/site-homepage` 与对应目录；slug 使用可读 ASCII 名称，不使用随机名。
 `wt` 不可用时的等价命令：
 
 ```bash
-git -C "$REPO" worktree add /home/lvziw/项目/.wt/TaskDock/site-homepage -b agent/site-homepage origin/main
+git -C "$REPO" worktree add /home/lvziw/项目/.wt/TaskDock-site/site-homepage -b agent/site-homepage origin/main
 ```
 
 使用等价命令时也必须确认 worktree 的 `HEAD` 与创建时的 `origin/main` 一致。
