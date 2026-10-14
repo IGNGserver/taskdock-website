@@ -12,6 +12,7 @@
 
 ```text
 bash scripts/verify-repository.sh
+node scripts/check-site.mjs
 git diff --check
 ```
 
