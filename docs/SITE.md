@@ -20,7 +20,8 @@ TaskDock 的产品官网：介绍产品、提供下载与部署入口和文档�
 ## 当前状态（2026-10-15）
 
 - 首版页面已实现：首页、下载与部署页、404 页；
-- 未创建 Cloudflare 项目、未绑定域名、未上线（见 `docs/HOSTING.md`）。
+- 已部署到 Cloudflare Pages 项目 `taskdock-website`，默认地址为 <https://taskdock-website.pages.dev/>；
+- 正式自定义域名尚未选定（见 `docs/HOSTING.md`）。
 
 ## 已定案的决策
 
@@ -30,7 +31,7 @@ TaskDock 的产品官网：介绍产品、提供下载与部署入口和文档�
 | 页面 | `index.html`（首页）、`download.html`（下载与部署）、`404.html`；文档入口链接到产品仓库 `docs/`，不在本站复制文档 |
 | 语言 | 简体中文单语（与产品文档一致）；`<html lang="zh-CN">` |
 | 视觉方向 | 见下文“设计系统” |
-| 域名与 Cloudflare 项目 | **未定**，见 `docs/HOSTING.md` |
+| Cloudflare Pages 与地址 | 项目 `taskdock-website`；默认地址 `https://taskdock-website.pages.dev/`；自定义域名未定，见 `docs/HOSTING.md` |
 
 ## 目录结构
 
