@@ -42,4 +42,4 @@ TaskDock 的官网与下载入口，源码与产品仓库分离维护：
 
 - 开发位置：NAS 共享卷 `~/项目`（ubuntu-dev 与 macOS 开发机共用）；仓库锚点 `~/项目/项目网站/TaskDock-site`，任务 worktree 在 `~/项目/.wt/TaskDock-site/<slug>`。
 - 本地预览：站点是纯静态文件，任意静态服务器指向 `site/` 即可（例如 `python3 -m http.server -d site 8765`）；`404.html` 使用根路径资源，需从站点根目录提供才能正确显示。
-- 生产目标：Cloudflare 边缘网络（账号与 zone 已具备，站点项目与域名未定；不写凭据）。
+- 生产目标：Cloudflare Pages 项目 `taskdock-website`，默认地址为 `https://taskdock-website.pages.dev/`；正式自定义域名未定，不写凭据。
