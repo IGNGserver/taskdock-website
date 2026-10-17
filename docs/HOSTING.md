@@ -47,8 +47,16 @@
 
 ## 搜索收录
 
-- Google Search Console：域名资源 `sc-domain:igng.net` 已验证，本域名无需单独验证；sitemap 由 `site/robots.txt` 的 `Sitemap:` 行暴露，GSC 的手动提交只能在 UI 做（公开 API 已无 `sitemaps.submit`）。
-- Bing Webmaster Tools：站点 `https://taskdock.igng.net/` 已登记，所有权用首页 `<meta name="msvalidate.01" content="B411826ACAE5C5CD20EA5574C3F8A6E4">` 验证；验证后提交 `https://taskdock.igng.net/sitemap.xml` 与首页、`/download` URL。
+- Bing Webmaster Tools：站点 `https://taskdock.igng.net/` **已验证所有权**（2026-10-17），方式是首页
+  `<meta name="msvalidate.01" content="B411826ACAE5C5CD20EA5574C3F8A6E4">`；该值是账号级 auth code，与
+  其它 `*.igng.net` 站点相同，**删掉这条 meta 会让 Bing 失去所有权记录**。已提交
+  `https://taskdock.igng.net/sitemap.xml`（抓取状态 Success，2 条 URL）与 `/`、`/download`。
+- Google Search Console：无需为本子域单独验证，域名资源 `sc-domain:igng.net`（权限 `siteFullUser`）已覆盖。
+  2026-10-17 用 URL Inspection 查询 `/` 与 `/download` 均为 `URL is unknown to Google`，属新建域名的正常状态；
+  Google 需要先抓 `site/robots.txt` 的 `Sitemap:` 行才会发现 `site/sitemap.xml`。
+- GSC 的 sitemap 提交与 Request Indexing 只能在控制台 UI 做：公开 API 的 `sitemaps.submit` 已下线
+  （`GET .../sitemaps` 仍可读，`PUT .../feedpath/...` 一律 404）。
+- Pages 会把 `/download.html` 308 到 `/download`，`site/sitemap.xml` 与 canonical 一律用干净地址。
 
 ## 上线检查清单
 
