@@ -26,7 +26,7 @@
 
 - Pages 项目：`taskdock-website`；部署类型：Direct Upload；生产分支元数据：`main`。
 - 站点目录 `site/` 原样上传，无构建步骤；仓库合并不会自动触发生产发布。
-- 当前生产部署：`ac9ea14c-e293-46d2-a07b-e9e50bd80e50`，对应提交 `3f07f6f`（2026-10-17，切换到正式域名后重新发布）。
+- 当前生产部署：`15870b27-a30d-4965-a570-4569c8e2edfe`，对应提交 `364bc72`（2026-10-17，下载页 canonical 改用干净地址后重新发布）。
 - 首次生产部署：`c83ed42a-87fc-4f3f-a7f7-a8e6db7336a9`，对应提交 `ba46b7c`。
 - 正式域名：<https://taskdock.igng.net/>；默认公开地址 <https://taskdock-website.pages.dev/> 保留为别名。
 - 自定义域名记录：proxied CNAME `taskdock.igng.net` → `taskdock-website.pages.dev`，zone `igng.net`（zone id `d3f06d3e7ef8cccf99e93ce9c4ea4f44`，record id `3b3d0c49e7129ffee3742d2963e15e94`）。
@@ -62,6 +62,6 @@
 
 ## 回滚
 
-- 当前部署：`ac9ea14c-e293-46d2-a07b-e9e50bd80e50`（提交 `3f07f6f`）；回滚点：`c83ed42a-87fc-4f3f-a7f7-a8e6db7336a9`（提交 `ba46b7c`）。
+- 当前部署：`15870b27-a30d-4965-a570-4569c8e2edfe`（提交 `364bc72`）；回滚点：`ac9ea14c-e293-46d2-a07b-e9e50bd80e50`（提交 `3f07f6f`）。
 - Pages：在 Cloudflare Pages 项目中选择上一成功部署版本恢复；发布前先记录新的部署 ID。
 - 域名变更：修改 DNS 记录前记录原值，回滚即恢复原记录；当前是 proxied CNAME `taskdock.igng.net` → `taskdock-website.pages.dev`，改动必须同步 Pages 自定义域名。
