@@ -8,7 +8,7 @@
 - Cloudflare 账号已就绪，zone 与 Pages/Workers 均可用；
 - 本仓库为独立公开仓库，CI 走 GitHub Actions；
 - Cloudflare Pages 项目 `taskdock-website` 已创建，采用 Direct Upload；
-- 默认公开地址为 `https://taskdock-website.pages.dev/`；正式自定义域名尚未选定。
+- 默认公开地址为 `https://taskdock-website.pages.dev/`；正式域名 `https://taskdock.igng.net/` 已于 2026-10-17 绑定为自定义域名。
 
 ## 构建配置（2026-10-15 定案）
 
@@ -27,8 +27,9 @@
 - Pages 项目：`taskdock-website`；部署类型：Direct Upload；生产分支元数据：`main`。
 - 站点目录 `site/` 原样上传，无构建步骤；仓库合并不会自动触发生产发布。
 - 首次生产部署：`c83ed42a-87fc-4f3f-a7f7-a8e6db7336a9`，对应提交 `ba46b7c`。
-- 默认公开地址：<https://taskdock-website.pages.dev/>。
-- 当前没有配置自定义域名；`taskdock.pages.dev` 是产品站地址，不属于本官网项目，不能覆盖。
+- 正式域名：<https://taskdock.igng.net/>；默认公开地址 <https://taskdock-website.pages.dev/> 保留为别名。
+- 自定义域名记录：proxied CNAME `taskdock.igng.net` → `taskdock-website.pages.dev`，zone `igng.net`（zone id `d3f06d3e7ef8cccf99e93ce9c4ea4f44`，record id `3b3d0c49e7129ffee3742d2963e15e94`）。
+- `taskdock.pages.dev` 是产品站地址，不属于本官网项目，不能覆盖。
 - 后续生产发布沿用 Direct Upload，并在发布前记录部署 ID；长期自动发布流程待补充最小权限的 CI 凭据后再启用。
 
 ## 候选方案（实现时二选一）
@@ -45,15 +46,16 @@
 
 - [x] 前端技术栈与构建命令定案，登记到 `AGENTS.md` 并接入 CI（零依赖静态站点，`node scripts/check-site.mjs`）；
 - [x] 创建 Cloudflare Pages 项目 `taskdock-website`，采用 Direct Upload；
-- [x] 默认 Pages 地址 `https://taskdock-website.pages.dev/` 已配置并验证 HTTPS；
+- [x] 默认 Pages 地址与自定义域名 `https://taskdock.igng.net/` 均已配置并验证 HTTPS（2026-10-17）；
 - [ ] 若启用 CI 上传：在 GitHub 仓库 Secrets 配置最小权限的 `CLOUDFLARE_API_TOKEN` 与 `CLOUDFLARE_ACCOUNT_ID`；凭据不得提交；
 - [ ] 自动部署工作流尚未配置；当前由受控 Direct Upload 发布，并记录部署 ID；
 - [x] 已验证首页、下载页、404、CSP、安全响应头、产品仓库链接与 Releases 链接；
 - [ ] 评估是否将产品仓库 `homepageUrl`（当前为空）改为官网地址；
-- [ ] 选定正式自定义域名后补 `og:image`（需要绝对地址）、`sitemap.xml` 与 `robots.txt` 中的 Sitemap 行。
+- [x] `sitemap.xml` 与 `robots.txt` 的 Sitemap 行、`canonical` / `og:url` 已按正式域名补齐（2026-10-17）；
+- [ ] `og:image` 仍缺 1200×630 素材；补上时必须使用绝对地址 `https://taskdock.igng.net/...`。
 
 ## 回滚
 
 - 当前部署回滚点：`c83ed42a-87fc-4f3f-a7f7-a8e6db7336a9`（提交 `ba46b7c`）。
 - Pages：在 Cloudflare Pages 项目中选择上一成功部署版本恢复；发布前先记录新的部署 ID。
-- 域名变更：修改 DNS 记录前记录原值，回滚即恢复原记录。
+- 域名变更：修改 DNS 记录前记录原值，回滚即恢复原记录；当前是 proxied CNAME `taskdock.igng.net` → `taskdock-website.pages.dev`，改动必须同步 Pages 自定义域名。
