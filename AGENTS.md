@@ -36,10 +36,10 @@ TaskDock 的官网与下载入口，源码与产品仓库分离维护：
 - 页面只加载站内资源（脚本、样式、字体、图片）；唯一的外部请求是浏览器读取 GitHub 公共 API 的最新版本号，失败时回退到 `site/assets/js/release.js` 里的兜底版本。新增外部来源必须同步修改 `site/_headers` 的 CSP。
 - 品牌图标只能由产品仓库 `assets/branding/taskdock-icon.png` 缩放得到（产品仓库品牌规范禁止重绘为 SVG）；更换母版后按 `docs/SITE.md` 重新生成。
 - 站点文案引用产品事实（功能、平台、版本）时必须与产品仓库当前 `README.md` / Release 对齐，不得编造未发布能力；产品当前发布均为 `2.0.0-rc.*` 预览版，不得在站点上描述为稳定版。
-- 域名与 Cloudflare 项目名在 `docs/HOSTING.md` 记录；未定案前不得把猜测值写入代码或文档结论。
+- 正式域名 `https://taskdock.igng.net/`，Cloudflare Pages 项目 `taskdock-website`；域名或项目名变更要在 `docs/HOSTING.md` 登记。
 
 ## 环境事实
 
 - 开发位置：NAS 共享卷 `~/项目`（ubuntu-dev 与 macOS 开发机共用）；仓库锚点 `~/项目/项目网站/TaskDock-site`，任务 worktree 在 `~/项目/.wt/TaskDock-site/<slug>`。
 - 本地预览：站点是纯静态文件，任意静态服务器指向 `site/` 即可（例如 `python3 -m http.server -d site 8765`）；`404.html` 使用根路径资源，需从站点根目录提供才能正确显示。
-- 生产目标：Cloudflare Pages 项目 `taskdock-website`，默认地址为 `https://taskdock-website.pages.dev/`；正式自定义域名未定，不写凭据。
+- 生产目标：Cloudflare Pages Direct Upload 项目 `taskdock-website`，正式域名 `https://taskdock.igng.net/`；自定义域名绑定在项目上，之后的每次部署都自动服务该域名，`https://taskdock-website.pages.dev/` 只作默认别名保留；不写凭据。

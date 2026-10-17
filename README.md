@@ -6,7 +6,7 @@ TaskDock 的产品官网与下载入口。本仓库只承载官网站点，产�
 - 产品定位：面向个人开发者的离线优先、自托管任务工作台
 - 托管方案：Cloudflare Pages Direct Upload（见 [`docs/HOSTING.md`](docs/HOSTING.md)）
 
-> **状态**：首版站点已部署上线：<https://taskdock-website.pages.dev/>。
+> **状态**：站点已部署上线：<https://taskdock.igng.net/>。
 
 ## 仓库结构
 
