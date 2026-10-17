@@ -50,7 +50,9 @@
 - [x] 前端技术栈与构建命令定案，登记到 `AGENTS.md` 并接入 CI（零依赖静态站点，`node scripts/check-site.mjs`）；
 - [x] 创建 Cloudflare Pages 项目 `taskdock-website`，采用 Direct Upload；
 - [x] 默认 Pages 地址与自定义域名 `https://taskdock.igng.net/` 均已配置并验证 HTTPS（2026-10-17）；
-- [x] 正式域名验证通过：首页与 `/download.html` 返回 200、未知路径 404、`/sitemap.xml` 200、`robots.txt` 指向正式域名、CSP 与安全响应头生效；
+- [x] 正式域名验证通过：首页与 `/download` 返回 200（Pages 会把 `/download.html` 308 到
+      `/download`，所以 canonical 与 sitemap 一律用干净地址）、未知路径 404、`/sitemap.xml` 200、
+      `robots.txt` 指向正式域名、CSP 与安全响应头生效；
 - [ ] 若启用 CI 上传：在 GitHub 仓库 Secrets 配置最小权限的 `CLOUDFLARE_API_TOKEN` 与 `CLOUDFLARE_ACCOUNT_ID`；凭据不得提交；
 - [ ] 自动部署工作流尚未配置；当前由受控 Direct Upload 发布，并记录部署 ID；
 - [x] 已验证首页、下载页、404、CSP、安全响应头、产品仓库链接与 Releases 链接；
