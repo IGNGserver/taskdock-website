@@ -26,11 +26,14 @@
 
 - Pages 项目：`taskdock-website`；部署类型：Direct Upload；生产分支元数据：`main`。
 - 站点目录 `site/` 原样上传，无构建步骤；仓库合并不会自动触发生产发布。
+- 当前生产部署：`ac9ea14c-e293-46d2-a07b-e9e50bd80e50`，对应提交 `3f07f6f`（2026-10-17，切换到正式域名后重新发布）。
 - 首次生产部署：`c83ed42a-87fc-4f3f-a7f7-a8e6db7336a9`，对应提交 `ba46b7c`。
 - 正式域名：<https://taskdock.igng.net/>；默认公开地址 <https://taskdock-website.pages.dev/> 保留为别名。
 - 自定义域名记录：proxied CNAME `taskdock.igng.net` → `taskdock-website.pages.dev`，zone `igng.net`（zone id `d3f06d3e7ef8cccf99e93ce9c4ea4f44`，record id `3b3d0c49e7129ffee3742d2963e15e94`）。
 - `taskdock.pages.dev` 是产品站地址，不属于本官网项目，不能覆盖。
 - 后续生产发布沿用 Direct Upload，并在发布前记录部署 ID；长期自动发布流程待补充最小权限的 CI 凭据后再启用。
+- 发布命令（零构建，直接发布 `site/`；自定义域名绑定在项目上，所以每次发布都直接服务 `https://taskdock.igng.net/`）：
+  `npx wrangler pages deploy site --project-name taskdock-website --branch main`；凭据只以环境变量 `CLOUDFLARE_API_TOKEN` / `CLOUDFLARE_ACCOUNT_ID` 注入（账号 `d08c9ec0a1765b7040866053cec24e8b`），不得写进仓库或 CI 长期 Secrets。
 
 ## 候选方案（实现时二选一）
 
@@ -47,6 +50,7 @@
 - [x] 前端技术栈与构建命令定案，登记到 `AGENTS.md` 并接入 CI（零依赖静态站点，`node scripts/check-site.mjs`）；
 - [x] 创建 Cloudflare Pages 项目 `taskdock-website`，采用 Direct Upload；
 - [x] 默认 Pages 地址与自定义域名 `https://taskdock.igng.net/` 均已配置并验证 HTTPS（2026-10-17）；
+- [x] 正式域名验证通过：首页与 `/download.html` 返回 200、未知路径 404、`/sitemap.xml` 200、`robots.txt` 指向正式域名、CSP 与安全响应头生效；
 - [ ] 若启用 CI 上传：在 GitHub 仓库 Secrets 配置最小权限的 `CLOUDFLARE_API_TOKEN` 与 `CLOUDFLARE_ACCOUNT_ID`；凭据不得提交；
 - [ ] 自动部署工作流尚未配置；当前由受控 Direct Upload 发布，并记录部署 ID；
 - [x] 已验证首页、下载页、404、CSP、安全响应头、产品仓库链接与 Releases 链接；
@@ -56,6 +60,6 @@
 
 ## 回滚
 
-- 当前部署回滚点：`c83ed42a-87fc-4f3f-a7f7-a8e6db7336a9`（提交 `ba46b7c`）。
+- 当前部署：`ac9ea14c-e293-46d2-a07b-e9e50bd80e50`（提交 `3f07f6f`）；回滚点：`c83ed42a-87fc-4f3f-a7f7-a8e6db7336a9`（提交 `ba46b7c`）。
 - Pages：在 Cloudflare Pages 项目中选择上一成功部署版本恢复；发布前先记录新的部署 ID。
 - 域名变更：修改 DNS 记录前记录原值，回滚即恢复原记录；当前是 proxied CNAME `taskdock.igng.net` → `taskdock-website.pages.dev`，改动必须同步 Pages 自定义域名。
