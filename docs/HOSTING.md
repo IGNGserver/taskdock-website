@@ -45,6 +45,11 @@
 
 决策点：是否需要边缘逻辑、构建时长与缓存、预览部署方式。
 
+## 搜索收录
+
+- Google Search Console：域名资源 `sc-domain:igng.net` 已验证，本域名无需单独验证；sitemap 由 `site/robots.txt` 的 `Sitemap:` 行暴露，GSC 的手动提交只能在 UI 做（公开 API 已无 `sitemaps.submit`）。
+- Bing Webmaster Tools：站点 `https://taskdock.igng.net/` 已登记，所有权用首页 `<meta name="msvalidate.01" content="B411826ACAE5C5CD20EA5574C3F8A6E4">` 验证；验证后提交 `https://taskdock.igng.net/sitemap.xml` 与首页、`/download` URL。
+
 ## 上线检查清单
 
 - [x] 前端技术栈与构建命令定案，登记到 `AGENTS.md` 并接入 CI（零依赖静态站点，`node scripts/check-site.mjs`）；
